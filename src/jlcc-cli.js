@@ -118,7 +118,7 @@ let jlcCpl=cpl.map(row=>{
 	return ({
 		Designator: row.Ref,
 		"Mid X": `${parseFloat(row.PosX)+cx}mm`,
-		"Mid Y": `${parseFloat(row.PosY)+cy}mm`,
+		"Mid Y": `${parseFloat(row.PosY)-cy}mm`,
 		Layer: row.Side === "top" ? "Top" : "Bottom",
 		Rotation: Rotation
 	});
