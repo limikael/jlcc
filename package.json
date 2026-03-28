@@ -1,0 +1,23 @@
+{
+  "name": "jlcc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "jlcc": "src/jlcc-cli.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.28.2",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "commander": "^14.0.3",
+    "csv": "^6.5.1",
+    "kisch": "link:../kisch"
+  }
+}
