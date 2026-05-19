@@ -4,6 +4,7 @@ import fs, {promises as fsp} from "fs";
 import os from "os";
 import {program} from "commander";
 import {runCommand} from "./node-util.js";
+import {arrayify} from "./js-util.js";
 import {zipFilesFromDir} from "./archiver-util.js";
 import path from "path";
 import {parse as csvParse, stringify as csvStringify} from "csv/sync";
@@ -20,10 +21,19 @@ program
     .description("Compile JLCPCB friendly files.")
     .requiredOption("-o, --output <dir>","Output dir")
     .argument("<pcb>","Pcb file.")
+    .showHelpAfterError()
+
+program.option(
+	"-F, --footprint-dir <path>",
+	"Footprint directory (multiple allowed)",
+	(value, previous)=>[...arrayify(previous),value],
+	[]
+);
 
 await program.parseAsync();
+let options=program.opts();
 
-let footprintLibrary=new FootprintLibrary("/home/micke/Repo.ext/kicad-footprints/");
+let footprintLibrary=new FootprintLibrary(options.footprintDir);
 
 const base=path.join(path.parse(program.args[0]).dir,path.parse(program.args[0]).name);
 const pcbFile=base+".kicad_pcb";

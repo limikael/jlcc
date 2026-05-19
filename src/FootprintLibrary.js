@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import {sexpParse, sexpCallName} from "./sexp.js";
+import {arrayify} from "./js-util.js";
 
 class Footprint {
 	constructor(sexp) {
@@ -35,8 +36,7 @@ export default class FootprintLibrary {
 		this.paths=[];
 		this.footprints={};
 
-		if (p)
-			this.paths.push(p);
+		this.paths.push(...arrayify(p));
 
 		this.paths.push(".");
 	}
@@ -54,6 +54,9 @@ export default class FootprintLibrary {
 			if (fs.existsSync(cand))
 				libraryPath=cand;
 		}
+
+		if (!libraryPath)
+			throw new Error("Library not found: "+library);
 
 		let fn=path.join(libraryPath,name)+".kicad_mod";
 		let footprint=new Footprint(sexpParse(fs.readFileSync(fn,"utf8"))[0]);
