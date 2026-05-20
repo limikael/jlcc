@@ -33,7 +33,10 @@ program.option(
 await program.parseAsync();
 let options=program.opts();
 
-let footprintLibrary=new FootprintLibrary(options.footprintDir);
+let footprintLibrary=new FootprintLibrary({
+	footprintDirs: options.footprintDir,
+	projectDir: path.parse(program.args[0]).dir
+});
 
 const base=path.join(path.parse(program.args[0]).dir,path.parse(program.args[0]).name);
 const pcbFile=base+".kicad_pcb";
