@@ -1,12 +1,12 @@
 {
-  "name": "jlcc",
+  "name": "kicad-fab-export",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "jlcc": "src/jlcc-cli.js"
+    "kicad-fab-export": "src/kicad-fab-export-cli.js"
   },
   "type": "module",
   "keywords": [],

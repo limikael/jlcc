@@ -1,4 +1,4 @@
-# jlcc
+# kicad-fab-export
 
 A scriptable CLI tool for generating **JLCPCB manufacturing files** directly from a KiCad PCB file.
 
@@ -6,7 +6,7 @@ It is designed for automated workflows and deterministic, CI-friendly PCB export
 
 ## Overview
 
-`jlcc` takes a KiCad PCB file (`.kicad_pcb`) as the single source of truth and generates JLCPCB-compatible manufacturing outputs:
+`kicad-fab-export` takes a KiCad PCB file (`.kicad_pcb`) as the single source of truth and generates JLCPCB-compatible manufacturing outputs:
 
 * `bom.csv` — Bill of Materials
 * `cpl.csv` — Pick and Place (Centroid file)
@@ -38,12 +38,12 @@ Footprints without `lcsc` are ignored.
 
 ## Footprint Resolution
 
-`jlcc` resolves footprint geometry by loading `.kicad_mod` files from provided footprint directories.
+`kicad-fab-export` resolves footprint geometry by loading `.kicad_mod` files from provided footprint directories.
 
 It doesn't try to resolve these automatically because they are a bit inconsistent from system to system. You probably want to do something like:
 
 ```bash
-jlcc board.kicad_pcb \
+kicad-fab-export board.kicad_pcb \
   -F /usr/share/kicad/footprints/ \
   -o ./out
 ```
@@ -92,7 +92,7 @@ gerbers.zip
 
 ## Error Handling
 
-`jlcc` uses strict validation and will **fail immediately** on any inconsistency.
+`kicad-fab-export` uses strict validation and will **fail immediately** on any inconsistency.
 
 Errors include:
 
@@ -107,7 +107,7 @@ No partial output is produced on failure.
 ## Example
 
 ```bash
-jlcc myboard.kicad_pcb -F ./libs -o ./out
+kicad-fab-export myboard.kicad_pcb -F ./libs -o ./out
 ```
 
 Output:
@@ -121,7 +121,7 @@ out/
 
 ## Philosophy
 
-`jlcc` is intentionally minimal and deterministic:
+`kicad-fab-export` is intentionally minimal and deterministic:
 
 * No schematic parsing
 * No netlist dependency

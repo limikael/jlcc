@@ -18,7 +18,7 @@ async function kicadCli(args) {
 }
 
 program
-    .description("Compile JLCPCB friendly files.")
+    .description("Compile JLCPCB friendly files from KiCad pcb.")
     .requiredOption("-o, --output <dir>","Output dir")
     .argument("<pcb>","Pcb file.")
     .showHelpAfterError()
